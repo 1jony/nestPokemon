@@ -8,7 +8,7 @@ import { SeedModule } from './seed/seed.module';
 import { AxiosAdapter } from './common/adapters/axios.adapter';
 import { CommonModule } from './common/pipes/common.module';
 import { EnvConfiguration } from './config/app.config';
-import { JoiValidationSchema } from './config/joi.validate';
+
 
 
 
@@ -18,13 +18,12 @@ import { JoiValidationSchema } from './config/joi.validate';
   exports:[AxiosAdapter],
   imports: [
     ConfigModule.forRoot({
-      load:[EnvConfiguration],
-      // validationSchema:[JoiValidationSchema]
+      load:[EnvConfiguration]
     }),
     ServeStaticModule.forRoot({ 
     rootPath: join(__dirname,'..','public'), 
     }),
-    MongooseModule.forRoot(process.env.MONGODB,{
+    MongooseModule.forRoot('mongodb://mongo:iZXSmqITtVFOAGRxetApLreJSySNXhRz@autorack.proxy.rlwy.net:27674',{
       dbName:'pokemonsdb'
     } ),
     PokemonModule,
